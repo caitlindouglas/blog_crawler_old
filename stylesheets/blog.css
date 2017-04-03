@@ -1,7 +1,16 @@
-.blue-header {
-	color: blue;
+table {
+	font-weight: bold;
 }
 
-.red-header {
-	color: #00ff00;
+table, td, th {
+	border: 1px dashed pink;
+}
+
+.main {
+	background-color: green;
+}
+
+#main-header {
+	color: red;
+	font: 14px comicsans;
 }
