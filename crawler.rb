@@ -1,15 +1,13 @@
+require 'nokogiri'
+require 'mechanize'
+
 class Crawler
-	def crawl
-		blogs = ['blog1', 'blog2', 'blog3', 'blog4']
-		
-		blogs.each do |blog_name|
-			# puts blog_name
-		end
+	def crawl(url)
+		agent = Mechanize.new
+		agent.agent.http.verify_mode = OpenSSL::SSL::VERIFY_NONE
 
-		entry = BlogEntry.new
-		entry.author = 'Tash'
-		entry.title = 'Best of Liberty Station'
+		blog_page = agent.get(url)
 
-		puts "#{entry.author} is the #{entry.title}!!!"
+		puts blog_page.title
 	end
 end

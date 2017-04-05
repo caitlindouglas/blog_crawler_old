@@ -1,5 +1,6 @@
 require './crawler.rb'
-require './blog_entry.rb'
+
+url = 'https://gapintelligence.com/blog'
 
 crawler = Crawler.new
-crawler.crawl
+crawler.crawl(url)
