@@ -11,6 +11,14 @@ class Crawler
 		agent.agent.http.verify_mode = OpenSSL::SSL::VERIFY_NONE
 		blog_page = agent.get(url)
 
-		puts blog_page.title
+		current_page = 1
+		while current_page < 5
+			puts blog_page.extract('.b-post a')
+
+			next_page_url = blog_page.extract('a.older_posts', attr: :href)
+			blog_page = agent.get(next_page_url)
+
+			current_page += 1
+		end
 	end
 end
