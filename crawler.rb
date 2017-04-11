@@ -7,8 +7,6 @@ class Crawler
 	include MechanizeAdapter
 
 	def crawl(url)
-		agent = Mechanize.new
-		agent.agent.http.verify_mode = OpenSSL::SSL::VERIFY_NONE
 		blog_page = agent.get(url)
 
 		current_page = 1
@@ -19,6 +17,17 @@ class Crawler
 			blog_page = agent.get(next_page_url)
 
 			current_page += 1
+		end
+	end
+
+	def parse_blogs(page)
+	end
+
+	def agent
+		@mechanize_agent ||= begin 
+			our_mechanize_agent = Mechanize.new
+			our_mechanize_agent.agent.http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+			our_mechanize_agent
 		end
 	end
 end
