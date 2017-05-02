@@ -1,8 +1,4 @@
-require 'nokogiri'
-require 'mechanize'
 require 'mechanize_adapter'
-require 'active_support/core_ext'
-require 'pry'
 
 class Crawler
 	include MechanizeAdapter
@@ -23,7 +19,7 @@ class Crawler
 		page.extract_all('.b-post a.btn.btn-lg__trans--color3', attr: :href).each do |read_more_url|
 			read_more_page = agent.get(read_more_url)
 
-			puts read_more_page.extract('.jumbotron-sub__post-title')
+			puts read_more_page.extract('.post__author')
 		end
 	end
 
